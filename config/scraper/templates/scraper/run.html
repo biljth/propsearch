@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Scraper{% endblock %}
+
+{% block content %}
+
+<h1>🔍 Cari Properti</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Kota</label>
+    {{ form.kota }}
+
+    <label>Tipe Properti</label>
+    {{ form.tipe }}
+
+    <label>Jual / Sewa</label>
+    {{ form.jual_sewa }}
+
+    <div class="row">
+        <div>
+            <label>Min Harga</label>
+            {{ form.min_harga }}
+        </div>
+        <div>
+            <label>Max Harga</label>
+            {{ form.max_harga }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <label>Min Luas Tanah</label>
+            {{ form.min_luas_tanah }}
+        </div>
+        <div>
+            <label>Max Luas Tanah</label>
+            {{ form.max_luas_tanah }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <label>Min Luas Bangunan</label>
+            {{ form.min_luas_bangunan }}
+        </div>
+        <div>
+            <label>Max Luas Bangunan</label>
+            {{ form.max_luas_bangunan }}
+        </div>
+    </div>
+
+    <label>Kata Kunci</label>
+    {{ form.kata_kunci }}
+
+    <button type="submit">🚀 Cari Properti</button>
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const hargaInputs = document.querySelectorAll('.rupiah');
+
+    hargaInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            let value = this.value.replace(/[^\d]/g, '');
+            this.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+            // optional: store raw value
+            this.setAttribute('data-unformatted-value', value);
+        });
+    });
+
+    // 🔥 IMPORTANT: clean before submit
+    const form = document.querySelector("form");
+    if (form) {
+        form.addEventListener("submit", function () {
+            hargaInputs.forEach(input => {
+                input.value = input.value.replace(/\./g, '');
+            });
+        });
+    }
+
+});
+</script>
+{% endblock %}
+
+
