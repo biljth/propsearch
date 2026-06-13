@@ -254,10 +254,10 @@ class WebScrape(scrapy.Spider):
         }
 
         urls = [
-            self.rumah123_url,
-            self.nineco_url,
-            self.lamudi_url,
-            self.pinhome_url,
+            # self.rumah123_url,
+            # self.nineco_url,
+            # self.lamudi_url,
+            # self.pinhome_url,
             self.passhouse_url
         ]
 
@@ -270,10 +270,8 @@ class WebScrape(scrapy.Spider):
                 yield scrapy.Request(url, callback=self.lamudi)
             elif 'pinhome' in url:
                 yield scrapy.Request(url, callback=self.pinhome)
-        print(self.rumah123_url, self.nineco_url,
-            self.lamudi_url,
-            self.pinhome_url, 
-            self.passhouse_url, "-------------------------------------------------------------------------------------------------------------------------------------")
+            elif 'pashouses.id' in url:
+                yield scrapy.Request(url, callback=self.passhouse)
 
         self.debug_urls.append(url)
 
@@ -457,14 +455,27 @@ class WebScrape(scrapy.Spider):
             self.logger.info("Reached last page. Stopping pagination.")
     
     def passhouse(self, response):
-        cards = response.css("div.mt-2.p-4.flex.flex-col.justify-between")
+
+        print("=" * 50)
+        print("PASSHOUSE URL:", response.url)
+
+        property_count = response.xpath(
+            "//span[contains(text(),'properti')]/text()"
+        ).get()
+
+        print("PROPERTY COUNT:", repr(property_count))
+
+        no_result = response.css("p::text").getall()
+        print("P TAGS:", no_result[:20])
+    
+        cards = response.css("a.w-full.bg-white.rounded-b-xl")
+        print("CARDS FOUND:", len(cards))
 
         for card in cards:
             title = card.css("h2::text").get()
             price = card.css("span.ph-property-list__card-body__price::text").get()
-            location = card.css("p.font-normal.text-\\[14px\\].text-\\[\\#565757\\].my-2::text").get()
+            location = card.css("p.text-\\[\\#565757\\].my-2::text").get()
 
-            # Get property link
             link = card.attrib.get("href")
 
             if link:
