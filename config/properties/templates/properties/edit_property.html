@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Property
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Edit Property</h1>
+
+        <h3>Current Photos</h3>
+
+        <div class="gallery">
+
+            {% for image in property.images.all %}
+
+                <div class="image-box">
+
+                    <img
+                        src="{{ image.image.url }}"
+                        class="gallery-image"
+                    >
+
+                    <a
+                        href="{% url 'delete_image' image.id %}"
+                        class="delete-image-btn"
+                        onclick="return confirm('Delete image?')"
+                    >
+                        Delete
+                    </a>
+
+                </div>
+
+            {% empty %}
+
+                <p>No photos</p>
+
+            {% endfor %}
+
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <label>
+                Tambah Foto Baru
+            </label>
+
+            <input
+                type="file"
+                name="images"
+                multiple
+            >
+
+            <button type="submit">
+                Save Changes
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block title %}
+My Properties
+{% endblock %}
+{% load humanize %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>My Properties</h1>
+
+    <form method="GET" class="search-form">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Cari property..."
+            value="{{ query }}"
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+    <div class="property-grid">
+
+        {% for property in properties %}
+
+        <div class="property-card {% if property.status == 'sold' %}sold-card{% endif %}">
+
+            {% if property.status == 'sold' %}
+                <div class="sold-badge">
+                    SOLD OUT
+                </div>
+            {% endif %}
+
+            {% with property.images.first as image %}
+                {% if image %}
+                    <img
+                        src="{{ image.image.url }}"
+                        class="property-image"
+                    >
+                {% else %}
+                    <div class="no-image">
+                        No Image
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <div class="property-content">
+
+                <h3>
+                    {{ property.title }}
+                </h3>
+
+                <div class="price">
+                    Rp {{ property.price|intcomma }}
+                </div>
+
+                <p>
+                    📍 {{ property.location }}
+                </p>
+
+                <p>
+                    {{ property.wilayah }}
+                </p>
+
+                <p>
+                    🏠 {{ property.property_category }}
+                </p>
+
+                <div class="property-info">
+
+                    {% if property.area_surface %}
+                    <span>
+                        LT {{ property.area_surface }} m²
+                    </span>
+                    {% endif %}
+
+                    {% if property.area_building %}
+                    <span>
+                        LB {{ property.area_building }} m²
+                    </span>
+                    {% endif %}
+
+                </div>
+
+                <div class="property-info">
+
+                    {% if property.bedrooms %}
+                    <span>
+                        🛏 {{ property.bedrooms }}
+                    </span>
+                    {% endif %}
+
+                    {% if property.bathrooms %}
+                    <span>
+                        🚿 {{ property.bathrooms }}
+                    </span>
+                    {% endif %}
+
+                </div>
+
+                <div class="button-group">
+
+                    <a
+                        href="{% url 'property_detail' property.slug %}"
+                        class="btn btn-detail"
+                    >
+                        Detail
+                    </a>
+
+                    <a
+                        href="{% url 'edit_property' property.id %}"
+                        class="btn btn-edit"
+                    >
+                        Edit
+                    </a>
+
+                    <a
+                        href="{% url 'toggle_sold' property.id %}"
+                        class="btn btn-sold"
+                    >
+
+                    {% if property.status == 'active' %}
+                        Sold Out
+                    {% else %}
+                        Not Sold
+                    {% endif %}
+
+                    </a>
+
+                    <a
+                        href="{% url 'delete_property' property.id %}"
+                        class="btn btn-delete"
+                        onclick="return confirm('Hapus property ini?')"
+                    >
+                        Delete
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-box">
+            <h3>Belum ada property</h3>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

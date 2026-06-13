@@ -19,6 +19,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SCRAPY_DIR = os.path.join(BASE_DIR, "..", "crawler")
 OUTPUT_FILE = os.path.join(SCRAPY_DIR, "results.json")
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGIN_URL = '/accounts/login/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -43,7 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'scraper',
+    'properties',
+    'accounts',
 ]
 
 MIDDLEWARE = [

@@ -3,6 +3,7 @@ import json
 import os
 from django.shortcuts import render
 from .models import Property
+from properties.models import InternalProperty
 from .forms import ScraperForm
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -16,6 +17,12 @@ def run_scraper(request):
     if request.method == "POST" and form.is_valid():
 
         data = form.cleaned_data
+        internal_properties = InternalProperty.objects.filter(
+            location=data.get("kota"),
+            property_type=data.get("jual_sewa"),
+            property_category=data.get("tipe"),
+            status="active"
+        )
 
         output_file = "../crawler/results.json"
         debug_file = "../crawler/debug_urls.json"
@@ -74,17 +81,18 @@ def run_scraper(request):
 
         Property.objects.all().delete()
 
-        for item in scraped_data:
-            Property.objects.create(
-                title=item.get("title"),
-                price=item.get("price"),
-                location=item.get("location"),
-                link=item.get("link"),
-                source=item.get("source")
-            )
+        # for item in scraped_data:
+        #     Property.objects.create(
+        #         title=item.get("title"),
+        #         price=item.get("price"),
+        #         location=item.get("location"),
+        #         link=item.get("link"),
+        #         source=item.get("source")
+        #     )
 
         return render(request, "scraper/results.html", {
-            "properties": Property.objects.all(),
+            "internal_properties": internal_properties,
+            "scraped_properties": scraped_data,
             "debug_urls": debug_urls,
             "form": form
         })

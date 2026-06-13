@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Properties
+{% endblock %}
+{% load humanize %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Property Listings</h1>
+
+    <div class="property-grid">
+
+        {% for property in properties %}
+
+        <div class="property-card">
+
+            {% with property.images.first as image %}
+                {% if image %}
+                    <img
+                        src="{{ image.image.url }}"
+                        class="property-image"
+                    >
+                {% endif %}
+            {% endwith %}
+
+            <div class="property-body">
+
+                <h3>
+                    <a href="{% url 'property_detail' property.slug %}">
+                        {{ property.title }}
+                    </a>
+                </h3>
+
+                <div class="price">
+                    Rp {{ property.price|intcomma }}
+                </div>
+
+                <p>
+                    📍 {{ property.location }}
+                </p>
+
+                <p>
+                    🏠 {{ property.property_category }}
+                </p>
+
+                {% if property.area_surface %}
+                    <p>
+                        Luas Tanah:
+                        {{ property.area_surface }} m²
+                    </p>
+                {% endif %}
+
+                {% if property.area_building %}
+                    <p>
+                        Luas Bangunan:
+                        {{ property.area_building }} m²
+                    </p>
+                {% endif %}
+
+                <div class="property-footer">
+
+                    {% if property.bedrooms %}
+                        <span>
+                            🛏 {{ property.bedrooms }}
+                        </span>
+                    {% endif %}
+
+                    {% if property.bathrooms %}
+                        <span>
+                            🚿 {{ property.bathrooms }}
+                        </span>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="card">
+            <h3>Tidak ada property</h3>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<style>
+
+.property-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:25px;
+}
+
+.property-card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    transition:.2s;
+}
+
+.property-card:hover{
+    transform:translateY(-5px);
+}
+
+.property-image{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.property-body{
+    padding:20px;
+}
+
+.property-body h3{
+    margin-top:0;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+    color:#28a745;
+    margin-bottom:15px;
+}
+
+.property-body p{
+    margin:8px 0;
+    color:#555;
+}
+
+.property-footer{
+    margin-top:15px;
+    display:flex;
+    gap:20px;
+    font-weight:bold;
+}
+
+</style>
+
+{% endblock %}

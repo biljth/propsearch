@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card" style="max-width:450px;margin:auto;">
+
+        <h1>Login Agen</h1>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <label>Username</label>
+            <input
+                type="text"
+                name="username"
+                class="form-control"
+                placeholder="Username atau Email"
+                required
+            >
+
+            <label>Password</label>
+            <input type="password" name="password">
+
+            <button type="submit">
+                Login
+            </button>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+
+        </form>
+
+        <p>
+            Belum punya akun?
+            <a href="{% url 'register' %}">
+                Register
+            </a>
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

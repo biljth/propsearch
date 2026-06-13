@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Property Scraper{% endblock %}</title>
+    <title>{% block title %}Property Project{% endblock %}</title>
 
     <!-- Simple styling (no heavy framework needed) -->
     <style>
@@ -40,6 +40,7 @@
             margin-top: 5px;
             border-radius: 6px;
             border: 1px solid #ccc;
+            box-sizing: border-box;
         }
 
         button {
@@ -66,6 +67,7 @@
         .row > div {
             flex: 1;
         }
+
         .card-item {
             background:white;
             padding:20px;
@@ -77,16 +79,329 @@
         .card-item:hover {
             transform: scale(1.02);
         }
+
+        .navbar {
+            background: white;
+            padding: 15px 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            margin-right: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .navbar .right {
+            float: right;
+        }
+
+        .property-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(350px,1fr));
+            gap:25px;
+            margin-top:30px;
+        }
+
+        .property-card{
+            background:white;
+            border-radius:15px;
+            overflow:hidden;
+            box-shadow:0 4px 15px rgba(0,0,0,0.08);
+            transition:0.2s;
+            position:relative;
+        }
+
+        .property-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .sold-card{
+            background:#f1fff5;
+            border:2px solid #28a745;
+        }
+
+        .sold-badge{
+            position:absolute;
+            top:15px;
+            right:15px;
+            background:#28a745;
+            color:white;
+            padding:8px 14px;
+            border-radius:8px;
+            font-size:12px;
+            font-weight:bold;
+            z-index:10;
+        }
+
+        .property-image{
+            width:100%;
+            height:240px;
+            object-fit:cover;
+        }
+
+        .no-image{
+            height:240px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#eee;
+            color:#666;
+        }
+
+        .property-content{
+            padding:20px;
+        }
+
+        .property-content h3{
+            margin-top:0;
+            margin-bottom:10px;
+        }
+
+        .price{
+            color:#28a745;
+            font-size:24px;
+            font-weight:bold;
+            margin-bottom:15px;
+        }
+
+        .property-content p{
+            margin:8px 0;
+            color:#555;
+        }
+
+        .property-info{
+            display:flex;
+            gap:15px;
+            margin-top:10px;
+            font-weight:bold;
+        }
+
+        .button-group{
+            margin-top:20px;
+            display:flex;
+            gap:10px;
+        }
+
+        .btn{
+            flex:1;
+            text-align:center;
+            text-decoration:none;
+            padding:10px;
+            border-radius:8px;
+            color:white;
+            font-weight:bold;
+        }
+
+        .btn-detail{
+            background:#007bff;
+        }
+
+        .btn-edit{
+            background:#28a745;
+        }
+
+        .empty-box{
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            text-align:center;
+        }
+
+        .search-form{
+            display:flex;
+            gap:10px;
+            margin-bottom:30px;
+        }
+
+        .search-form input{
+            flex:1;
+            padding:12px;
+            border:1px solid #ddd;
+            border-radius:8px;
+        }
+
+        .search-form button{
+            width:150px;
+        }
+
+        .btn-sold{
+            background:#ff9800;
+        }
+
+        .btn-delete{
+            background:#dc3545;
+        }
+
+        .gallery{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+            gap:15px;
+            margin-bottom:20px;
+        }
+
+        .gallery-image{
+            width:100%;
+            height:150px;
+            object-fit:cover;
+            border-radius:10px;
+        }
+
+        .delete-image-btn{
+            display:block;
+            margin-top:8px;
+            text-align:center;
+            background:#dc3545;
+            color:white;
+            padding:8px;
+            border-radius:6px;
+            text-decoration:none;
+        }
+
+        .carousel-container{
+            margin-top:20px;
+        }
+
+        .main-image{
+            width:100%;
+            height:500px;
+            object-fit:cover;
+            border-radius:12px;
+        }
+
+        .thumbnail-container{
+            display:flex;
+            gap:10px;
+            margin-top:15px;
+            flex-wrap:wrap;
+        }
+
+        .thumbnail{
+            width:120px;
+            height:90px;
+            object-fit:cover;
+            border-radius:8px;
+            cursor:pointer;
+            border:3px solid transparent;
+            transition:.2s;
+        }
+
+        .thumbnail:hover{
+            border-color:#28a745;
+            transform:scale(1.05);
+        }
+
+        .active-thumb{
+            border:3px solid #28a745;
+        }
+
+        .property-form{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 5px 20px rgba(0,0,0,.08);
+        }
+
+        .form-group{
+            margin-bottom:18px;
+        }
+
+        .form-group label{
+            display:block;
+            font-weight:600;
+            margin-bottom:6px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea{
+            width:100%;
+            padding:12px;
+            border:1px solid #ddd;
+            border-radius:8px;
+            box-sizing:border-box;
+        }
+
+        .form-group textarea{
+            min-height:120px;
+        }
+
+        .row{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+            gap:15px;
+        }
+
+        .file-input{
+            border:2px dashed #28a745;
+            padding:20px;
+            background:#f8fff9;
+        }
+
+        .save-btn{
+            width:100%;
+            background:#28a745;
+            color:white;
+            border:none;
+            padding:15px;
+            border-radius:10px;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        .save-btn:hover{
+            background:#218838;
+        }
+
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="card">
-        {% block content %}
-        {% endblock %}
+    <div class="navbar">
+
+        <a href="/">Home</a>
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'property_list' %}">
+                Properties
+            </a>
+
+            <a href="{% url 'my_properties' %}">
+                My Properties
+            </a>
+
+            <a href="{% url 'add_property' %}">
+                Add Property
+            </a>
+
+            <a href="{% url 'logout' %}">
+                Logout
+            </a>
+
+            <span class="right">
+                {{ user.username }}
+            </span>
+
+        {% else %}
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+            <a href="{% url 'register' %}">
+                Register
+            </a>
+
+        {% endif %}
+
     </div>
-</div>
+
+    {% block content %}
+    {% endblock %}
 
 </body>
 </html>

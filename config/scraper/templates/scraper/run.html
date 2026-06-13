@@ -3,59 +3,69 @@
 {% block title %}Scraper{% endblock %}
 
 {% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
 
-<h1>🔍 Cari Properti</h1>
+            <h1>🔍 Cari Properti</h1>
 
-<form method="POST">
-    {% csrf_token %}
+            <form method="POST">
+                {% csrf_token %}
 
-    <label>Kota</label>
-    {{ form.kota }}
+                <label>Kota</label>
+                {{ form.kota }}
 
-    <label>Tipe Properti</label>
-    {{ form.tipe }}
+                <label>Tipe Properti</label>
+                {{ form.tipe }}
 
-    <label>Jual / Sewa</label>
-    {{ form.jual_sewa }}
+                <label>Jual / Sewa</label>
+                {{ form.jual_sewa }}
 
-    <div class="row">
-        <div>
-            <label>Min Harga</label>
-            {{ form.min_harga }}
-        </div>
-        <div>
-            <label>Max Harga</label>
-            {{ form.max_harga }}
+                <div class="row">
+                    <div>
+                        <label>Min Harga</label>
+                        {{ form.min_harga }}
+                    </div>
+                    <div>
+                        <label>Max Harga</label>
+                        {{ form.max_harga }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <label>Min Luas Tanah</label>
+                        {{ form.min_luas_tanah }}
+                    </div>
+                    <div>
+                        <label>Max Luas Tanah</label>
+                        {{ form.max_luas_tanah }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <label>Min Luas Bangunan</label>
+                        {{ form.min_luas_bangunan }}
+                    </div>
+                    <div>
+                        <label>Max Luas Bangunan</label>
+                        {{ form.max_luas_bangunan }}
+                    </div>
+                </div>
+
+                <label>Kata Kunci</label>
+                {{ form.kata_kunci }}
+
+                <button type="submit">🚀 Cari Properti</button>
+            </form>
+
+            <a href="{% url 'property_list' %}" class="btn btn-primary">
+                Property Listings
+            </a>
         </div>
     </div>
-
-    <div class="row">
-        <div>
-            <label>Min Luas Tanah</label>
-            {{ form.min_luas_tanah }}
-        </div>
-        <div>
-            <label>Max Luas Tanah</label>
-            {{ form.max_luas_tanah }}
-        </div>
-    </div>
-
-    <div class="row">
-        <div>
-            <label>Min Luas Bangunan</label>
-            {{ form.min_luas_bangunan }}
-        </div>
-        <div>
-            <label>Max Luas Bangunan</label>
-            {{ form.max_luas_bangunan }}
-        </div>
-    </div>
-
-    <label>Kata Kunci</label>
-    {{ form.kata_kunci }}
-
-    <button type="submit">🚀 Cari Properti</button>
-</form>
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

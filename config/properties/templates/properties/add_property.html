@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Property
+{% endblock %}
+{% load humanize %}
+
+{% block content %}
+
+<div class="property-form">
+
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label>Judul Properti</label>
+        {{ form.title }}
+    </div>
+
+    <div class="form-group">
+        <label>Harga</label>
+        {{ form.price|intcomma }}
+    </div>
+
+    <div class="form-group">
+        <label>Lokasi</label>
+        {{ form.location }}
+    </div>
+
+    <div class="form-group">
+        <label>Wilayah</label>
+        {{ form.wilayah }}
+    </div>
+
+    <div class="form-group">
+        <label>Kategori</label>
+        {{ form.property_category }}
+    </div>
+
+    <div class="row">
+
+        <div class="form-group">
+            <label>Jenis</label>
+            {{ form.property_type }}
+        </div>
+
+        <div class="form-group">
+            <label>Kamar Tidur</label>
+            {{ form.bedrooms }}
+        </div>
+
+        <div class="form-group">
+            <label>Kamar Mandi</label>
+            {{ form.bathrooms }}
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="form-group">
+            <label>Luas Tanah (m²)</label>
+            {{ form.area_surface }}
+        </div>
+
+        <div class="form-group">
+            <label>Luas Bangunan (m²)</label>
+            {{ form.area_building }}
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label>Deskripsi</label>
+        {{ form.description }}
+    </div>
+
+    <hr>
+
+    <h3>Informasi Agen</h3>
+
+    <div class="row">
+
+        <div class="form-group">
+            <label>Nama Agen</label>
+            {{ form.agent_name }}
+        </div>
+
+        <div class="form-group">
+            <label>No. HP</label>
+            {{ form.agent_phone }}
+        </div>
+
+        <div class="form-group">
+            <label>WhatsApp</label>
+            {{ form.agent_whatsapp }}
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h3>Informasi Internal</h3>
+
+    <div class="form-group">
+        <label>Alamat Lengkap</label>
+        {{ form.full_address }}
+    </div>
+
+    <div class="form-group">
+        <label>Google Drive</label>
+        {{ form.google_drive_link }}
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label>Foto Properti</label>
+
+        <input
+            type="file"
+            name="images"
+            multiple
+            class="file-input"
+        >
+    </div>
+
+    <button type="submit" class="save-btn">
+        💾 Simpan Properti
+    </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
