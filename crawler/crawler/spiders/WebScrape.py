@@ -254,10 +254,10 @@ class WebScrape(scrapy.Spider):
         }
 
         urls = [
-            # self.rumah123_url,
-            # self.nineco_url,
-            # self.lamudi_url,
-            # self.pinhome_url,
+            self.rumah123_url,
+            self.nineco_url,
+            self.lamudi_url,
+            self.pinhome_url,
             self.passhouse_url
         ]
 
