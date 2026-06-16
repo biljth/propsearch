@@ -1,0 +1,350 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$p5rX9hSP1gAjdGTAbRQwjp$FeUdg1ByR1bhJUzfnNDBC6K16Dpety4PZ47Y10F0tqQ=",
+    "last_login": "2026-06-11T12:50:30.545Z",
+    "is_superuser": false,
+    "username": "lmpremier2025",
+    "first_name": "",
+    "last_name": "",
+    "email": "billyjonathanjahja@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-11T12:50:29.109Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$8ziTaoj9FrSsSLIfJ7Fl3y$a5P9yhMgQKGiIUReSGWhjBztORMu4lDONntJ/xj7OP8=",
+    "last_login": "2026-06-13T13:20:42.371Z",
+    "is_superuser": false,
+    "username": "bil",
+    "first_name": "",
+    "last_name": "",
+    "email": "billyjonathanjahja@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-11T13:20:00.451Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$ZV6vnPYrPr4t9b7iOTFxAZ$NUElCely6oItBXaDj6lj57SFEtFbAX8ei7CIRAE7AqE=",
+    "last_login": "2026-06-13T13:19:14.674Z",
+    "is_superuser": false,
+    "username": "billyj",
+    "first_name": "",
+    "last_name": "",
+    "email": "emailcumanbuatgame@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-13T13:19:11.577Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dhexnt9emmm1wxiffxdaf9sibca3vv9s",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBoGRCX7nsGMjCDVA0kpV0Z765NutDtf-_9lwi4rSVsnZcwk7iIQZx-t4jpwXUHdMd6azK1ui5zlLsiD9rl1Iif18P9OyjYy7c2Di14jzERG1QjmmgsQNbKEfqU2WsweSCrR6uSGxHYIqAnlRnOkMT7A-1mODQ:1wYOHy:Qh7udgIlI1mpCSZSouuKilyaY1FymwWS2fayCJuGTbY",
+    "expire_date": "2026-06-27T13:20:42.383Z"
+  }
+},
+{
+  "model": "properties.internalproperty",
+  "pk": 1,
+  "fields": {
+    "owner": null,
+    "agent_name": "2026-06-09 11:41:44.711107+00:00",
+    "agent_phone": null,
+    "agent_whatsapp": null,
+    "status": "active",
+    "title": "contoh1",
+    "description": "dnheudd",
+    "price": 1000000000,
+    "location": "jakarta",
+    "wilayah": "",
+    "full_address": null,
+    "google_drive_link": null,
+    "property_type": "jual",
+    "property_category": "rumah",
+    "area_surface": 34,
+    "area_building": 32,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "land_certificate": null,
+    "building_year": null,
+    "listing_status": "available",
+    "slug": "contoh1-1",
+    "created_at": "2026-06-09T11:24:01.918Z"
+  }
+},
+{
+  "model": "properties.internalproperty",
+  "pk": 2,
+  "fields": {
+    "owner": null,
+    "agent_name": "b",
+    "agent_phone": "43",
+    "agent_whatsapp": "332",
+    "status": "active",
+    "title": "efef",
+    "description": "efefe",
+    "price": 1333,
+    "location": "serre",
+    "wilayah": "",
+    "full_address": "jangan dilia",
+    "google_drive_link": null,
+    "property_type": "sewa",
+    "property_category": "apart",
+    "area_surface": 23,
+    "area_building": 2,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "land_certificate": null,
+    "building_year": null,
+    "listing_status": "available",
+    "slug": "efef-2",
+    "created_at": "2026-06-09T11:50:44.119Z"
+  }
+},
+{
+  "model": "properties.internalproperty",
+  "pk": 3,
+  "fields": {
+    "owner": null,
+    "agent_name": "b",
+    "agent_phone": "43",
+    "agent_whatsapp": "332",
+    "status": "active",
+    "title": "fefe",
+    "description": "fef",
+    "price": 1212,
+    "location": "ddas",
+    "wilayah": "",
+    "full_address": "232",
+    "google_drive_link": null,
+    "property_type": "jual",
+    "property_category": "rumah",
+    "area_surface": 23,
+    "area_building": 21,
+    "bedrooms": 2,
+    "bathrooms": 0,
+    "land_certificate": null,
+    "building_year": null,
+    "listing_status": "available",
+    "slug": "fefe-3",
+    "created_at": "2026-06-11T11:08:44.321Z"
+  }
+},
+{
+  "model": "properties.internalproperty",
+  "pk": 4,
+  "fields": {
+    "owner": 2,
+    "agent_name": "bil",
+    "agent_phone": "43",
+    "agent_whatsapp": "332",
+    "status": "active",
+    "title": "11",
+    "description": "cdcsdcs",
+    "price": 23232,
+    "location": "sdd",
+    "wilayah": "",
+    "full_address": "desdd",
+    "google_drive_link": null,
+    "property_type": "jual",
+    "property_category": "apartc",
+    "area_surface": 23,
+    "area_building": 34,
+    "bedrooms": 21,
+    "bathrooms": 2,
+    "land_certificate": null,
+    "building_year": null,
+    "listing_status": "available",
+    "slug": "11-4",
+    "created_at": "2026-06-11T13:50:34.546Z"
+  }
+},
+{
+  "model": "properties.internalproperty",
+  "pk": 5,
+  "fields": {
+    "owner": 2,
+    "agent_name": "bil",
+    "agent_phone": "84674815",
+    "agent_whatsapp": "09202920292",
+    "status": "active",
+    "title": "rumah dijual di bsd",
+    "description": "sdojowjdo",
+    "price": 200000000,
+    "location": "dki-jakarta",
+    "wilayah": "pik",
+    "full_address": "461D Bukit Batok West Avenue 8",
+    "google_drive_link": null,
+    "property_type": "sewa",
+    "property_category": "rumah",
+    "area_surface": 100,
+    "area_building": 200,
+    "bedrooms": 10,
+    "bathrooms": 20,
+    "land_certificate": null,
+    "building_year": null,
+    "listing_status": "available",
+    "slug": "rumah-dijual-di-bsd-5",
+    "created_at": "2026-06-13T13:02:32.825Z"
+  }
+},
+{
+  "model": "properties.internalproperty",
+  "pk": 6,
+  "fields": {
+    "owner": 2,
+    "agent_name": "bil",
+    "agent_phone": "84674815",
+    "agent_whatsapp": "09202920292",
+    "status": "active",
+    "title": "rumah dijual di bsd",
+    "description": "cornoer",
+    "price": 100000000,
+    "location": "tangerang-selatan",
+    "wilayah": "BSD",
+    "full_address": "461D Bukit Batok West Avenue 8",
+    "google_drive_link": null,
+    "property_type": "jual",
+    "property_category": "rumah",
+    "area_surface": 100,
+    "area_building": 100,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "land_certificate": null,
+    "building_year": null,
+    "listing_status": "available",
+    "slug": "rumah-dijual-di-bsd-6",
+    "created_at": "2026-06-13T13:51:32.834Z"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 1,
+  "fields": {
+    "property": 1,
+    "image": "property_images/2.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 2,
+  "fields": {
+    "property": 2,
+    "image": "property_images/1.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 3,
+  "fields": {
+    "property": 2,
+    "image": "property_images/2_RFWkT8M.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 4,
+  "fields": {
+    "property": 3,
+    "image": "property_images/1_8o8AgmQ.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 5,
+  "fields": {
+    "property": 3,
+    "image": "property_images/2_AeN9M6s.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 6,
+  "fields": {
+    "property": 4,
+    "image": "property_images/merit_point_1.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 7,
+  "fields": {
+    "property": 4,
+    "image": "property_images/perbandingan_uni.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 8,
+  "fields": {
+    "property": 4,
+    "image": "property_images/Screenshot_5.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 9,
+  "fields": {
+    "property": 5,
+    "image": "property_images/merit_point_1_GqXMYOM.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 10,
+  "fields": {
+    "property": 5,
+    "image": "property_images/perbandingan_uni_2KS8G2F.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 11,
+  "fields": {
+    "property": 5,
+    "image": "property_images/Screenshot_5_X7py62s.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 12,
+  "fields": {
+    "property": 6,
+    "image": "property_images/merit_point_1_1LRpSBg.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 13,
+  "fields": {
+    "property": 6,
+    "image": "property_images/perbandingan_uni_acmN3h5.png"
+  }
+},
+{
+  "model": "properties.propertyimage",
+  "pk": 14,
+  "fields": {
+    "property": 6,
+    "image": "property_images/Screenshot_5_H8W9vxR.png"
+  }
+}
+]
