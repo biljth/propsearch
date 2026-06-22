@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 load_dotenv()
 
@@ -23,8 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SCRAPY_DIR = os.path.join(BASE_DIR, "..", "crawler")
 OUTPUT_FILE = os.path.join(SCRAPY_DIR, "results.json")
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 LOGIN_URL = '/accounts/login/'
 
@@ -55,6 +57,8 @@ INSTALLED_APPS = [
     'scraper',
     'properties',
     'accounts',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -96,7 +100,20 @@ DATABASES = {
         default=os.environ.get("DATABASE_URL")
     )
 }
-
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+print(os.getenv("CLOUDINARY_CLOUD_NAME"))
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
